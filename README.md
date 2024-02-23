@@ -57,7 +57,7 @@ Shared.Dispatch = {
 }
 ```
 
-# Depencies
+# Dependencies
  ESX  1.6 - UP  (Only for the jobs, you can edit with the framework you like more)
 
 
