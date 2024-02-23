@@ -1,0 +1,76 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: Jost-Medium;
+    src: url(../assets/fonts/Jost-Medium.ttf);
+}
+
+@font-face {
+    font-family: Jost-Regular;
+    src: url(../assets/fonts/Jost-Regular.ttf);
+}
+
+@font-face {
+    font-family: Jost-Light;
+    src: url(../assets/fonts/Jost-Light.ttf);
+}
+
+* {
+    user-select: none;
+}
+
+.system {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.dispatch {
+    position: relative;
+    top: -2vw;
+    width: 28vw;
+    border-radius: .25vw;
+    background-color: var(--main);
+    box-shadow: 0 0 .5vw var(--main);
+    margin: 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: .2vw;
+    transition: .2s;
+}
+
+.dispatch-bottom {
+    width: 100%;
+    height: 83%;
+    display: flex;
+    transition: .15s;
+}
+
+.showPanel {
+    animation: showPanel .25s ease-in-out forwards;
+}
+
+.hidePanel {
+    animation: hidePanel .25s ease-in-out forwards;
+}
+
+@keyframes showPanel {
+    from {
+        transform: translateY(0.5vw);
+        opacity: 0;
+    }
+}
+
+@keyframes hidePanel {
+    to {
+        transform: translateY(0.5vw);
+        opacity: 0;
+    }
+}

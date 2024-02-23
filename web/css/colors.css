@@ -1,0 +1,19 @@
+:root {
+    --main: rgba(0, 0, 0, 0.829);
+    --red: rgb(212, 64, 64);
+    --white: rgba(255, 255, 255, 0.719);
+    --secondary: rgba(156, 50, 50, 0.253);
+
+    --op-red: rgba(199, 99, 99, 0.322);
+    --op-green: rgba(65, 110, 76, 0.678);
+    --op-yellow: rgba(250, 234, 92, 0.349);
+
+    --state-off: rgba(223, 99, 99, 0.849);
+    --state-on: rgba(96, 207, 96, 0.753);
+
+    --location-green: rgba(135, 189, 135, 0.199);
+
+    --undefined-grey: rgba(221, 221, 221, 0.116);
+    --pol-blue: rgba(91, 149, 226, 0.267);
+    --ambulance-red: rgba(224, 101, 101, 0.233);
+}

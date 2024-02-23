@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/channel.css">
+    <link rel="stylesheet" href="css/calls.css">
+    <link rel="stylesheet" href="css/options.css">
+    <link rel="stylesheet" href="css/other.css">
+</head>
+
+<body>
+    <div class="system" id="app">
+        <div class="dispatch" :class="dispatch.open ? 'showPanel' : 'hidePanel'"
+            :style="{'height' : !dispatch.cursor ? '10.5vw' : '11w'}">
+
+            <div class="dispatch-top">
+                <div class="item-op" :class="getItemClasses(item)" v-for="(item, index) in dispatch.options.controls"
+                    :key="index" @click="clickControl(item, index)" :style="{
+                        'background-color': item.value === 'panic' ? 'var(--op-yellow)' : (item.disabled ? 'var(--op-red)' : ''),
+                        'box-shadow': (item.value === 'panic' ? '0 0 .2vw var(--op-yellow)' : '0 0 .2vw ' + (item.disabled ? 'var(--op-red)' : 'var(--op-green)'))
+                    }">
+                    <transition name="fade" appear>
+                        <div class="op-text" v-if="dispatch.cursor">{{item.label}}</div>
+                    </transition>
+                </div>
+            </div>
+
+            <div class="dispatch-bottom">
+
+                <div class="dispatch-calls">
+                    <div class="dispatch-calls-data">
+                        <div class="dispatch-calls-data-text" v-if="dispatch.data.calls.data.message">
+                            <div class="call-title"><i
+                                    class="fa-solid fa-hexagon-exclamation"></i>{{dispatch.data.calls.data.type}}</div>
+                            <div class="call-text">{{dispatch.data.calls.data.message}}</div>
+                        </div>
+                        <div class="dispatch-calls-no-data" v-else>Sin llamadas</div>
+                    </div>
+                    <div class="dispatch-other call-other">
+                        <div class="distance-call">{{dispatch.data.other.distance}}</div>
+                        <div class="dispatch-current-calls" v-if="dispatch.data.calls.index != 0"> <span
+                                class="call-index">{{dispatch.data.calls.index}}</span>{{ ' / ' +
+                            dispatch.data.calls.total }}
+                        </div>
+                        <div class="dispatch-current-calls" v-else>- - - </div>
+                    </div>
+                </div>
+
+                <div class="dispatch-channel">
+                    <transition name="fade" appear>
+                        <div class="dispatch-channel-container-messages"
+                            v-if="dispatch.data.channel.messages.length != 0">
+                            <div class="dispatch-channel-item"
+                                :style="{'background-color' : getCurrentChannelColor(item.job)}"
+                                :class="item.playerId == dispatch.player.id ? 'own-message' : ''"
+                                v-for="(item, index) in dispatch.data.channel.messages" :key="index">
+                                <div class="dispacth-channel-player"
+                                    :style="{'justify-content' : item.playerId == dispatch.player.id ? 'end' : 'start'}">
+                                    <i :class="getCurrentChannelIcon(item.job)"></i>
+                                    {{ item.playerId == dispatch.player.id ? 'Tú' : item.player }}
+                                </div>
+                                <div class="dispatch-channel-message">{{ item.message }}</div>
+                                <div class="dispatch-channel-button" @click="clickLocationButton(item.other.coords)"
+                                    :class="item.type == 'panic' ? 'panic-on' : 'panic-off'"
+                                    v-if="item.type == 'location' || item.type == 'panic'">
+
+                                    <i
+                                        :class="item.type ==
+                                        'location' ? 'fa-solid fa-solid fa-location-dot' : 'fa-solid fa-location-exclamation'"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="channel-no-messages" v-else>Sin mensajes</div>
+                    </transition>
+                </div>
+
+            </div>
+
+            <div class="dispatch-channel-context" :class="dispatch.cursor ? 'context-on' : 'context-off'">
+
+                <div class="dispatch-container-channels-context"
+                    :class="dispatch.data.channel.openAllowed ? 'showPanel' : 'hidePanel'">
+                    <div class="dispatch-item-channels-allowed" @click="enterNewChannel(index)"
+                        v-if="dispatch.data.channel.allowed" v-for="(item, index) in dispatch.data.channel.allowed"
+                        :key="index">
+                        <div class="item-state" :style="{
+                            'background-color': item.id == dispatch.data.channel.channelOn.id ? 'var(--state-on)' : 'var(--state-off)',
+                            'box-shadow': '0 0 .25vw ' + (item.id == dispatch.data.channel.channelOn.id ? 'var(--state-on)' : 'var(--state-off)')
+                        }">
+                        </div>
+
+                        <div class="item-title-allowed">{{item.title}}</div>
+                    </div>
+                </div>
+
+                <div class="button-enter-context" @click="enterAllowedChannels()"><i
+                        class="fa-solid fa-message-lines"></i></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

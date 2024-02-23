@@ -1,0 +1,194 @@
+.dispatch-channel {
+    position: relative;
+    width: 60%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.075);
+    border-left: .05vw solid rgba(255, 255, 255, 0.158);
+}
+
+.dispatch-channel::-webkit-scrollbar {
+    display: none;
+}
+
+.channel-no-messages {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: .8vw;
+    font-family: Jost-Medium;
+    color: rgba(192, 192, 192, 0.548);
+}
+
+.dispatch-channel-container-messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: .7vw;
+    font-family: Jost-Medium;
+    padding: .25vw;
+}
+
+.dispatch-channel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--white);
+    gap: .15vw;
+    min-width: 10%;
+    max-width: 85%;
+    width: max-content;
+    margin: .15vw;
+    border-radius: .15vw;
+    padding: .2vw .25vw;
+    animation: show .25s ease-in-out forwards;
+}
+
+.dispatch-channel-button {
+    width: 100%;
+    transition: .2s;
+    text-align: center;
+    background-color: rgba(223, 223, 223, 0.089);
+    border-radius: .15vw;
+    font-size: .65vw;
+    padding: .1vw 0;
+    color: rgba(211, 211, 211, 0.493);
+}
+
+.panic-off:hover {
+    cursor: pointer;
+    color: var(--white);
+    box-shadow: 0 0 .3vw rgba(0, 0, 0, 0.199);
+}
+
+@keyframes show {
+    from {
+        transform: translateY(0.5vw);
+        opacity: 0;
+    }
+}
+
+.dispacth-channel-player {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25vw;
+    padding-bottom: .1vw;
+    border-bottom: .1vw solid rgba(128, 128, 128, 0.096);
+}
+
+.dispacth-channel-player i {
+    font-size: .65vw;
+    color: rgb(158, 255, 158);
+    text-shadow: 0 0 .3vw rgba(158, 255, 158, 0.301);
+}
+
+.dispatch-channel-message {
+    color: rgb(199, 199, 199);
+    font-size: .65vw;
+}
+
+.own-message {
+    text-align: end;
+    background-color: rgba(98, 129, 83, 0.144) !important;
+    margin-left: auto;
+    margin-right: .6vw;
+}
+
+.dispatch-channel-context {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: end;
+    bottom: 10.45vw;
+    overflow-y: hidden;
+}
+
+.button-enter-context {
+    margin-left: auto;
+    margin-right: .35vw;
+    width: max-content;
+    color: var(--white);
+    background-color: var(--main);
+    box-shadow: 0 0 .3vw var(--main);
+    padding: .35vw .5vw;
+    font-size: .7vw;
+    height: .8vw;
+    border-top-left-radius: .25vw;
+    border-top-right-radius: .25vw;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.button-enter-context:hover {
+    scale: .9;
+    border-radius: .25vw;
+}
+
+.context-on {
+    transition: .2s;
+    opacity: 1;
+}
+
+.context-off {
+    opacity: .4;
+    transition: .2s;
+}
+
+.dispatch-container-channels-context {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: .35vw;
+    min-width: 40%;
+    min-height: 2vw;
+    max-height: 10vw;
+    padding: .15vw .5vw;
+    background-color: var(--main);
+    box-shadow: 0 0 .3vw var(--main);
+    border-top-left-radius: .25vw;
+    border-top-right-radius: .25vw;
+    font-family: Jost-Light;
+    font-size: .75vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.dispatch-container-channels-context::-webkit-scrollbar {
+    display: none;
+}
+
+.item-state {
+    margin-left: .15vw;
+    margin-right: .25vw;
+    width: .5vw;
+    height: .5vw;
+    border-radius: 50%;
+}
+
+.dispatch-item-channels-allowed {
+    display: flex;
+    margin: .15vw;
+    align-items: center;
+    width: 100%;
+    padding: .2vw;
+    border-radius: .15vw;
+    background-color: rgba(248, 248, 248, 0.055);
+    color: var(--white);
+    font-size: .75vw;
+}
+
+.dispatch-item-channels-allowed:hover {
+    cursor: pointer;
+    background-color: rgba(235, 114, 114, 0.205);
+}
+
+.panic-on {
+    background-color: #ffd468c7;
+    box-shadow: 0 0 .2vw rgba(255, 168, 0, 0.8);
+    color: rgb(161, 119, 3);
+    cursor: pointer;
+}

@@ -1,0 +1,51 @@
+.dispatch-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 20%;
+    gap: .25vw;
+    font-family: Jost-Light;
+    color: var(--white);
+    margin-top: .25vw;
+}
+
+.item-op {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .2vw;
+    border-radius: .15vw;
+    height: .5vw;
+    font-size: .6vw;
+    width: 4vw;
+    background-color: var(--op-green);
+    border: 0.1vw solid transparent;
+    transition: .25s;
+}
+
+.item-op:hover {
+    cursor: pointer;
+    opacity: .4;
+    scale: .98;
+    box-shadow: none !important;
+    transition: .25s;
+}
+
+.hideOptions {
+    height: .1vw;
+    width: 4vw;
+    padding: 0;
+    border-radius: .5vw;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    transition: opacity .2s;
+}
