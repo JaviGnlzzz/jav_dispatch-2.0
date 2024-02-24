@@ -57,7 +57,7 @@ Shared.Dispatch = {
 }
 ```
 
-# Depencies
- ESX  1.6 - UP  (Only for the jobs, you can edit with the framework you like more)
+# Dependencies
+ ESX  1.6 - UP  (Only for the player and notification, you can edit with the framework you like more)
 
 
