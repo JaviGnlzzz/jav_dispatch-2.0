@@ -64,7 +64,7 @@
                                 <div class="dispacth-channel-player"
                                     :style="{'justify-content' : item.playerId == dispatch.player.id ? 'end' : 'start'}">
                                     <i :class="getCurrentChannelIcon(item.job)"></i>
-                                    {{ item.playerId == dispatch.player.id ? 'Tú' : item.player }}
+                                    {{ item.playerId == dispatch.player.id ? 'Me' : item.player }}
                                 </div>
                                 <div class="dispatch-channel-message">{{ item.message }}</div>
                                 <div class="dispatch-channel-button" @click="clickLocationButton(item.other.coords)"

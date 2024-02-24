@@ -4,7 +4,6 @@ Language['en'] = {
     ['forzar'] = 'Car Jacking',
     ['tem'] = 'TEM',
     ['drugs'] = 'Drugs',
-    ['police'] = 'Police',
     ['error_message'] = 'You must add a message',
     ['error_vehicle'] = 'You must be in a vehicle!',
     ['error_speed'] = 'You must be in a vehicle!',
