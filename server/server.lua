@@ -1,6 +1,6 @@
 RegisterNetEvent('jav_dispatch:receiveCallServer', function(text, command, other)
     for _, player in ipairs(GetPlayers()) do
-        local targetPlayer = ESX.GetPlayerFromId(player)
+        local targetPlayer = GetPlayer(player)
 
         if (targetPlayer) then
             local playerJobName = targetPlayer.job and targetPlayer.job.name
@@ -23,6 +23,14 @@ function CheckTable(table, element)
         end
     end
     return false
+end
+
+function GetPlayer(source)
+    if(GetResourceState('es_extended') == 'started') then
+        return ESX.GetPlayerFromId(source)
+    elseif(GetResourceState('qb-core') == 'started') then
+        return QBCore.Functions.GetPlayer(source)
+    end
 end
 
 RegisterNetEvent('jav_dispatch:sendMessageServer', function(message, channel)

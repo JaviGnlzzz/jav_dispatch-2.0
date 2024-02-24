@@ -2,6 +2,8 @@ if(GetResourceState('qb-core') ~= 'started') then
     return
 end
 
+QBCore = exports['qb-core']:GetCoreObject()
+
 print('Resource started with ^2[QBCore]')
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
