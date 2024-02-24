@@ -1,8 +1,8 @@
 Language['en'] = {
     ['panic'] = 'PANIC ALERT',
     ['panic_send'] = 'Panic alert sent!',
-    ['forzar'] = 'Car Jacking',
     ['tem'] = 'TEM',
+    ['forzar'] = 'Car Jacking',
     ['drugs'] = 'Drugs',
     ['error_message'] = 'You must add a message',
     ['error_vehicle'] = 'You must be in a vehicle!',
