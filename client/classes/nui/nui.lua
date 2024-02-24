@@ -13,17 +13,17 @@ RegisterNUICallback('controlAction', function(data, cb)
     if(data.control.value == 'panic') then
 
         if(not next(dispatch.data.channels.channelOn)) then
-            Notification('PANIC', 'No estas en ningun canal para mandar ese aviso!', 'error')        
+            Notification(Translate('no_radio_chat'), 'error')        
             return
         end
         
-        Notification('PANIC', 'Mandaste una señal de panico', 'dispatch')
+        Notification(Translate('panic_send'), 'dispatch')
 
         local tableMessage = {
             playerId = dispatch.player.id,
             job = dispatch.player.name,
             player = (dispatch.player.playerName..' - '..dispatch.player.label.. ' '..dispatch.player.grade),
-            message = 'AVISO DE PANICÓ',
+            message = Translate('panic'),
             other = {
                 coords = GetEntityCoords(PlayerPedId())
             },

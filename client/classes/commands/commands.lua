@@ -2,7 +2,7 @@ RegisterCommand('entorno', function(source, args)
 
     local message = table.concat(args, ' ')
 
-    if(message == '') then return Notification('Entorno', 'Debes añadir un mensaje', 'error') end
+    if(message == '') then return Notification(Translate('error_message'), 'error') end
 
     local other = {
         coords = GetEntityCoords(PlayerPedId()),
@@ -14,7 +14,7 @@ end)
 
 RegisterCommand('forzar', function(source, args)
 
-    if(not IsPedInAnyVehicle(PlayerPedId())) then return Notification('Forzar', 'Debes estar en un vehículo!', 'error') end
+    if(not IsPedInAnyVehicle(PlayerPedId())) then return Notification(Translate('error_vehicle') , 'error') end
 
     local ped = PlayerPedId()
     local coords = GetEntityCoords(PlayerPedId())
@@ -28,14 +28,14 @@ RegisterCommand('forzar', function(source, args)
         carColor = tostring(GetVehicleColor(GetVehiclePedIsIn(ped)))
     }
 
-    SendNewCall('Robo de vehículo con modelo '..model..' y matrícula '..plate..', cerca de '..street, 'forzar', other)
+    SendNewCall(Translate('vehicle_robbery'):format(model, plate, street), 'forzar', other)
 end)
 
 RegisterCommand('tem', function(source, args)
 
     local ped = PlayerPedId()
 
-    if(not IsPedInAnyVehicle(ped)) then return Notification('Tem', 'Debes estar en un vehículo!', 'error') end
+    if(not IsPedInAnyVehicle(ped)) then return Notification(Translate('error_vehicle'), 'error') end
 
     local coords = GetEntityCoords(ped)
     local street = GetStreetNameFromHashKey(GetStreetNameAtCoord(coords.x, coords.y, coords.z))
@@ -49,7 +49,7 @@ RegisterCommand('tem', function(source, args)
         carColor = tostring(GetVehicleColor(GetVehiclePedIsIn(ped)))
     }
 
-    SendNewCall('Exceso de velocidad de un vehiculo modelo '..model.. ' con matrícula '..plate.. ', a una velocidad de '..speed..'KM', 'tem', other)
+    SendNewCall(Translate('speed_excess'):format(model, plate, speed), 'tem', other)
 end)
 
 RegisterCommand('auxilio', function(source, args)
@@ -63,7 +63,7 @@ RegisterCommand('auxilio', function(source, args)
         playerId = GetPlayerServerId(PlayerId()),
     }
 
-    SendNewCall('Alerta de auxilio cerca de '..street, 'auxilio', other)
+    SendNewCall(Translate('help_text'):format(street), 'auxilio', other)
 end)
 
 RegisterCommand('dispatch', function()
@@ -102,7 +102,7 @@ RegisterCommand("rchat", function(source, args)
     local message = table.concat(args, ' ')
 
     if(message ~= '') then
-        if(not next(dispatch.data.channels.channelOn)) then return Notification('Radio chat', 'No te encuentras en ningun chat de radio', 'error') end
+        if(not next(dispatch.data.channels.channelOn)) then return Notification(Translate('no_radio_chat'), 'error') end
 
         local tableMessage = {
             playerId = dispatch.player.id,
@@ -114,7 +114,7 @@ RegisterCommand("rchat", function(source, args)
 
         TriggerServerEvent('jav_dispatch:sendMessageServer', tableMessage, dispatch.data.channels.channelOn)
     else
-        Notification('Radio chat', 'Debes poner un mensaje', 'error')
+        Notification(Translate('error_message'), 'error')
     end
 end)
 
@@ -122,13 +122,13 @@ RegisterCommand("rlocation", function(source, args)
     if(not dispatch.player.allowed) then return end
 
     if(message ~= '') then
-        if(not next(dispatch.data.channels.channelOn)) then return Notification('Radio chat', 'No te encuentras en ningun chat de radio', 'error') end
+        if(not next(dispatch.data.channels.channelOn)) then return Notification(Translate('no_radio_chat'), 'error') end
 
         local tableMessage = {
             playerId = dispatch.player.id,
             job = dispatch.player.name,
             player = (dispatch.player.playerName..' - '..dispatch.player.label.. ' '..dispatch.player.grade),
-            message = 'Lozalización en tiempo real',
+            message = Translate('location'),
             other = {
                 coords = GetEntityCoords(PlayerPedId())
             },
@@ -143,13 +143,13 @@ RegisterCommand("rpanic", function(source, args)
     if(not dispatch.player.allowed) then return end
 
     if(message ~= '') then
-        if(not next(dispatch.data.channels.channelOn)) then return Notification('Radio chat', 'No te encuentras en ningun chat de radio', 'error') end
+        if(not next(dispatch.data.channels.channelOn)) then return Notification(Translate('no_radio_chat'), 'error') end
 
         local tableMessage = {
             playerId = dispatch.player.id,
             job = dispatch.player.name,
             player = (dispatch.player.playerName..' - '..dispatch.player.label.. ' '..dispatch.player.grade),
-            message = 'AVISO DE PANICÓ',
+            message = Translate('panic'),
             other = {
                 coords = GetEntityCoords(PlayerPedId())
             },

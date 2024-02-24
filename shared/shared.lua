@@ -2,6 +2,10 @@ ESX = exports["es_extended"]:getSharedObject()
 
 Shared = {}
 
+Shared.Language = 'en' -- en / es
+
+Language = {}
+
 Shared.Dispatch = {
     Jobs = {
         ['police'] = {

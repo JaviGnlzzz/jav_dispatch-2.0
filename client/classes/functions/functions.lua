@@ -76,7 +76,11 @@ function EnableCursor()
 end
 
 function Notification(title, message)
-    ESX.ShowNotification(title, message)
+    if(GetResourceState('es_extended') == 'started') then
+        ESX.ShowNotification(title, message)
+    elseif(GetResourceState('qbcore') == 'started') then
+        QBCore.Functions.Notify(title, message)
+    end
 end
 
 function SendNewCall(text, command, other)
@@ -130,7 +134,7 @@ function EnterChannel(channel)
     channel = (tonumber(channel) + 1)
 
     if(dispatch.data.channels.channelOn == dispatch.data.channels.allowed[channel]) then
-        Notification('Radio chat', 'Saliste del canal - '..dispatch.data.channels.channelOn.title, 'dispatch')
+        Notification(Translate('leave_radio'):format(dispatch.data.channels.channelOn.title), 'dispatch')
         dispatch.data.channels.channelOn = {}
         UpdateChannelOn()
         return 
@@ -138,7 +142,7 @@ function EnterChannel(channel)
 
     if(channel and dispatch.data.channels.allowed[channel]) then
         dispatch.data.channels.channelOn = dispatch.data.channels.allowed[channel]
-        Notification('Radio chat', 'Te has unido al canal - '..dispatch.data.channels.allowed[channel].title, 'dispatch')
+        Notification(Translate('join_radio'):format(dispatch.data.channels.allowed[channel].title), 'dispatch')
         UpdateChannelOn()
     end
 end
@@ -186,7 +190,23 @@ end
 
 function SetNewLocation(coords)
     if(coords) then
-        Notification('GPS', 'La localizacion se marco en tu mapa', 'dispatch')
+        Notification(Translate('location_selected'), 'dispatch')
         SetNewWaypoint(coords.x, coords.y)
+    end
+end
+
+function Translate(text)
+    if(Language[Shared.Language][text]) then
+        return Language[Shared.Language][text]
+    else
+        return print('No translation for: '..text)
+    end
+end
+
+function GetPlayer()
+    if(GetResourceState('es_extended') == 'started') then
+        return ESX.GetPlayerData()
+    elseif(GetResourceState('qbcore') == 'started') then
+        return QBCore.Functions.GetPlayerData()
     end
 end

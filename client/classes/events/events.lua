@@ -3,7 +3,7 @@ AddEventHandler('onResourceStart', function(resourceName)
         return
     end
 
-    local job = ESX.GetPlayerData().job
+    local job = GetPlayer().job
 
     dispatch.player = {}
 
@@ -12,7 +12,7 @@ AddEventHandler('onResourceStart', function(resourceName)
 
             dispatch.player = {
                 id = GetPlayerServerId(PlayerId()),
-                playerName = (ESX.GetPlayerData().firstName.. " "..ESX.GetPlayerData().lastName),
+                playerName = (GetPlayer().firstName.. " "..GetPlayer().lastName),
                 label = job.label,
                 name = job.name,
                 grade = job.grade_label,
@@ -23,65 +23,6 @@ AddEventHandler('onResourceStart', function(resourceName)
             GetAllChannels()
         end
     end
-end)
-
-RegisterNetEvent('esx:playerLoaded', function(xPlayer, isNew, skin)
-
-    local job = xPlayer.job
-
-    dispatch.player = {}
-
-    for k,v in pairs(Shared.Dispatch.Jobs) do
-        if(job.name == k) then
-            
-            dispatch.player = {
-                id = GetPlayerServerId(PlayerId()),
-                playerName = (xPlayer.firstName.. " "..xPlayer.lastName),
-                label = job.label,
-                name = job.name,
-                grade = job.grade_label,
-                panic = v.panic,
-                allowed = true
-            }
-
-            GetAllChannels()
-        end
-    end
-
-end)
-
-RegisterNetEvent('esx:setJob', function(job, lastJob)
-
-    if(job == lastJob) then return end
-
-    dispatch.player = {}
-
-    for k,v in pairs(Shared.Dispatch.Jobs) do
-        if(job.name == k) then
-
-            dispatch.player = {
-                id = GetPlayerServerId(PlayerId()),
-                playerName = (ESX.GetPlayerData().firstName.. " "..ESX.GetPlayerData().lastName),
-                label = job.label,
-                name = job.name,
-                grade = job.grade_label,
-                panic = v.panic,
-                allowed = true
-            }
-
-            GetAllChannels()
-        end
-    end
-
-
-    if(dispatch.cursor) then
-        EnableCursor()
-    end
-
-    if(dispatch.open) then
-        ShowDispatch()
-    end
-
 end)
 
 RegisterNetEvent('jav_dispatch:sendMessageClient', function(message, channel)

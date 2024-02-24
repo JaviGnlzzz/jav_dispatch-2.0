@@ -7,7 +7,7 @@ RegisterNetEvent('jav_dispatch:sendCallClient', function(text, command, other)
         table.insert(dispatch.data.calls, {
             id = #dispatch.data.calls == 0 and 1 or #dispatch.data.calls + 1,
             message = text,
-            type = command,
+            type = Translate('entorno'),
             other = other
         })
 
@@ -18,7 +18,7 @@ RegisterNetEvent('jav_dispatch:sendCallClient', function(text, command, other)
         table.insert(dispatch.data.calls, {
             id = #dispatch.data.calls == 0 and 1 or #dispatch.data.calls + 1,
             message = text,
-            type = 'drogas',
+            type = Translate('drugs'),
             other = other
         })
 
@@ -29,7 +29,7 @@ RegisterNetEvent('jav_dispatch:sendCallClient', function(text, command, other)
         table.insert(dispatch.data.calls, {
             id = #dispatch.data.calls == 0 and 1 or #dispatch.data.calls + 1,
             message = text,
-            type = 'aviso de TEM',
+            type = Translate('tem'),
             other = other
         })
 
@@ -40,7 +40,7 @@ RegisterNetEvent('jav_dispatch:sendCallClient', function(text, command, other)
         table.insert(dispatch.data.calls, {
             id = #dispatch.data.calls == 0 and 1 or #dispatch.data.calls + 1,
             message = text,
-            type = 'robo de vehículo',
+            type = Translate('forzar'),
             other = other
         })
 
@@ -51,7 +51,7 @@ RegisterNetEvent('jav_dispatch:sendCallClient', function(text, command, other)
         table.insert(dispatch.data.calls, {
             id = #dispatch.data.calls == 0 and 1 or #dispatch.data.calls + 1,
             message = text,
-            type = 'Aviso de auxilio',
+            type = Translate('help'),
             other = other
         })
 

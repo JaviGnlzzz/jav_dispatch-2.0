@@ -41,7 +41,7 @@
                                     class="fa-solid fa-hexagon-exclamation"></i>{{dispatch.data.calls.data.type}}</div>
                             <div class="call-text">{{dispatch.data.calls.data.message}}</div>
                         </div>
-                        <div class="dispatch-calls-no-data" v-else>Sin llamadas</div>
+                        <div class="dispatch-calls-no-data" v-else>No calls</div>
                     </div>
                     <div class="dispatch-other call-other">
                         <div class="distance-call">{{dispatch.data.other.distance}}</div>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        <div class="channel-no-messages" v-else>Sin mensajes</div>
+                        <div class="channel-no-messages" v-else>No messages</div>
                     </transition>
                 </div>
 
