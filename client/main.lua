@@ -1,7 +1,3 @@
-if(GetResourceState('es_extended') == 'missing') then
-    return print('es_extended is missing, please ensure it is installed and started, otherwise the script will not work well.')
-end
-
 dispatch = {
     open = false,
     cursor = false,
