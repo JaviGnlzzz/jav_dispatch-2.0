@@ -202,11 +202,3 @@ function Translate(text)
         return print('No translation for: '..text)
     end
 end
-
-function GetPlayer()
-    if(GetResourceState('es_extended') == 'started') then
-        return ESX.GetPlayerData()
-    elseif(GetResourceState('qbcore') == 'started') then
-        return QBCore.Functions.GetPlayerData()
-    end
-end

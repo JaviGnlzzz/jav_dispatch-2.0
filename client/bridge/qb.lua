@@ -6,6 +6,20 @@ QBCore = exports['qb-core']:GetCoreObject()
 
 print('Resource started with ^2[QBCore]')
 
+local function Player(panic)
+    local job = QBCore.Functions.GetPlayerData().job
+
+    return {
+        id = GetPlayerServerId(PlayerId()),
+        playerName = QBCore.Functions.GetPlayerData().charinfo.firstname.. " "..QBCore.Functions.GetPlayerData().charinfo.lastname,
+        name = job.name,
+        label = job.label,
+        grade = job.grade_label,
+        panic = panic,
+        allowed = true
+    }
+end
+
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
 
     local job = GetPlayer().job
@@ -15,15 +29,7 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     for k,v in pairs(Shared.Dispatch.Jobs) do
         if(job.name == k) then
 
-            dispatch.player = {
-                id = GetPlayerServerId(PlayerId()),
-                playerName = (GetPlayer().firstName.. " "..GetPlayer().lastName),
-                label = job.label,
-                name = job.name,
-                grade = job.grade_label,
-                panic = v.panic,
-                allowed = true
-            }
+            dispatch.player = Player(v.panic)
 
             GetAllChannels()
         end
@@ -40,15 +46,7 @@ RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job, lastJob)
     for k,v in pairs(Shared.Dispatch.Jobs) do
         if(job.name == k) then
 
-            dispatch.player = {
-                id = GetPlayerServerId(PlayerId()),
-                playerName = (GetPlayer().firstName.. " "..GetPlayer().lastName),
-                label = job.label,
-                name = job.name,
-                grade = job.grade_label,
-                panic = v.panic,
-                allowed = true
-            }
+            dispatch.player = Player(v.panic)
 
             GetAllChannels()
         end

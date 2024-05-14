@@ -1,30 +1,3 @@
-AddEventHandler('onResourceStart', function(resourceName)
-    if (GetCurrentResourceName() ~= resourceName) then
-        return
-    end
-
-    local job = GetPlayer().job
-
-    dispatch.player = {}
-
-    for k,v in pairs(Shared.Dispatch.Jobs) do
-        if(job.name == k) then
-
-            dispatch.player = {
-                id = GetPlayerServerId(PlayerId()),
-                playerName = (GetPlayer().firstName.. " "..GetPlayer().lastName),
-                label = job.label,
-                name = job.name,
-                grade = job.grade_label,
-                panic = v.panic,
-                allowed = true
-            }
-
-            GetAllChannels()
-        end
-    end
-end)
-
 RegisterNetEvent('jav_dispatch:sendMessageClient', function(message, channel)
     if (dispatch.data.controls[1].disabled) then return end
 

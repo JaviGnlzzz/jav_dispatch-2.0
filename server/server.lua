@@ -1,3 +1,13 @@
+local function getCore()
+    if(GetResourceState('qb-core') == 'started') then
+        return exports['qb-core']:GetCoreObject()
+    elseif(GetResourceState('es_extended') == 'started') then
+        return exports['es_extended']:getSharedObject()
+    end
+end
+
+local Core = getCore()
+
 RegisterNetEvent('jav_dispatch:receiveCallServer', function(text, command, other)
     for _, player in ipairs(GetPlayers()) do
         local targetPlayer = GetPlayer(player)
@@ -27,9 +37,9 @@ end
 
 function GetPlayer(source)
     if(GetResourceState('es_extended') == 'started') then
-        return ESX.GetPlayerFromId(source)
+        return Core.GetPlayerFromId(source)
     elseif(GetResourceState('qb-core') == 'started') then
-        return QBCore.Functions.GetPlayer(source)
+        return Core.Functions.GetPlayer(source)
     end
 end
 

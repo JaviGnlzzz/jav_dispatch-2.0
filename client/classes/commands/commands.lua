@@ -87,6 +87,8 @@ end)
 
 RegisterCommand("select_position", function()
     if(dispatch.open and not dispatch.cursor) then
+        if(#dispatch.data.calls == 0) then return end
+
         SetNewLocation(dispatch.data.calls[dispatch.data.index].other.coords)
 
         SendNUIMessage({
