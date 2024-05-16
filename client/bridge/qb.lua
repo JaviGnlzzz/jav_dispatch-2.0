@@ -21,9 +21,6 @@ local function Player(panic)
 end
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-
-    local job = GetPlayer().job
-
     dispatch.player = {}
 
     for k,v in pairs(Shared.Dispatch.Jobs) do
